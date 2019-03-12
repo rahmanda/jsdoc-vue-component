@@ -17,7 +17,9 @@
     "escodegen": "^1.9.0",
     "espree": "^3.5.2",
     "indent-string": "^3.2.0",
-    "strip-indent": "^2.0.0",
+    "strip-indent": "^2.0.0"
+  },
+  "peerDependencies": {
     "vue-template-compiler": "^2.5.3"
   }
 }
