@@ -230,14 +230,6 @@ function parseEvents(ast) {
 function parseCode(code) {
   log('parse code begin ...');
 
-  const ast = espree.parse(code, {
-    ecmaVersion: 9,
-    sourceType: 'module',
-    ecmaFeatures: {
-      experimentalObjectRestSpread: true
-    }
-  });
-
   const parsed = {
     name: '',
     options: [],
@@ -246,6 +238,25 @@ function parseCode(code) {
     components: [],
     computeds: [],
   };
+
+  let ast;
+
+  try {
+    ast = espree.parse(code, {
+      ecmaVersion: 9,
+      sourceType: 'module',
+      ecmaFeatures: {
+	experimentalObjectRestSpread: true,
+      },
+    });
+  } catch (error) {
+    console.warn(`
+      ======== WARNING ==========
+      ${error}
+      ===========================
+    `);
+    return parsed;
+  }
 
   // find exports
   let exportObj = null;
